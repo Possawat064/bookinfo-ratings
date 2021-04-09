@@ -4,17 +4,17 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$2
-  name: bookinfo-prd-ratings
-  namespace: student64-bookinfo-prd
+  name: {{ .Release.Name }}
+  namespace: student64-bookinfo-dev
 spec:
   rules:
-  - host: bookinfo.opsta.net
+  - host: bookinfo.dev.opsta.net
     http:
       paths:
       - path: /student64/ratings(/|$)(.*)
         pathType: Prefix
         backend:
           service:
-            name: bookinfo-prd-ratings
+            name: {{ .Release.Name }}
             port:
               number: 8080
