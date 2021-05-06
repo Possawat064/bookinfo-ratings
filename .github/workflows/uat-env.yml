@@ -39,20 +39,17 @@ jobs:
           release: bookinfo-uat-ratings
           namespace: student64-bookinfo-uat
           chart: k8s/helm
-          value-files: k8s/helm-values/values-bookinfo-uat-ratings.yaml      
+          value-files: k8s/helm-values/values-bookinfo-uat-ratings.yaml
           values: |
             {
               "extraEnv": {
                 "COMMIT_SHA": "${{ github.sha }}"
               }
-            }    
+            }
   acceptance-test:
     needs: deploy
     runs-on: ubuntu-20.04
     steps:
-      - name: Acceptance test
+      - name: Acceptance Test
         run: curl http://bookinfo.uat.opsta.net/student64/ratings/health | grep "Ratings is working"
-
-
-
         
